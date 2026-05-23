@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechZone | Loja de tecnologia</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="TechZone">
+        <span class="brand-mark">TZ</span>
+        <span>TechZone</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Principal">
+        <a href="#produtos">Produtos</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#suporte">Suporte</a>
+      </nav>
+
+      <form class="search-form" role="search">
+        <i data-lucide="search"></i>
+        <label for="searchInput" class="sr-only">Buscar produtos</label>
+        <input id="searchInput" type="search" placeholder="Buscar mouse, teclado, fone..." />
+      </form>
+
+      <button class="icon-button cart-toggle" type="button" aria-label="Abrir carrinho">
+        <i data-lucide="shopping-cart"></i>
+        <span id="cartCount">0</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="ofertas">
+        <div class="hero-copy">
+          <span class="eyebrow">Setup pronto para jogar, criar e trabalhar</span>
+          <h1>TechZone</h1>
+          <p>
+            Periféricos, áudio e acessórios com curadoria para quem quer montar
+            um setup bonito, rápido e confiável.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#produtos">
+              <i data-lucide="zap"></i>
+              Ver ofertas
+            </a>
+            <a class="secondary-button" href="#produtos">Montar setup</a>
+          </div>
+        </div>
+
+        <figure class="hero-visual" aria-label="Setup gamer com teclado, mouse e headset">
+          <img
+            src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=1400&q=85"
+            alt="Mesa com monitor, teclado iluminado, mouse e headset"
+          />
+          <figcaption>
+            <strong>Combo RGB Pro</strong>
+            <span>Teclado mecânico + mouse 16K + headset 7.1</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="quick-stats" aria-label="Beneficios da loja">
+        <div>
+          <strong>12x</strong>
+          <span>sem juros</span>
+        </div>
+        <div>
+          <strong>24h</strong>
+          <span>envio rapido</span>
+        </div>
+        <div>
+          <strong>2 anos</strong>
+          <span>garantia selecionada</span>
+        </div>
+        <div>
+          <strong>4.8/5</strong>
+          <span>avaliação média</span>
+        </div>
+      </section>
+
+      <section class="shop-section" id="produtos">
+        <aside class="filters" aria-label="Filtros de produtos">
+          <div class="section-heading">
+            <span class="eyebrow">Catálogo</span>
+            <h2>Produtos</h2>
+          </div>
+
+          <div class="filter-group">
+            <label for="categorySelect">Categoria</label>
+            <select id="categorySelect">
+              <option value="todos">Todos</option>
+              <option value="Mouse">Mouse</option>
+              <option value="Teclado">Teclado</option>
+              <option value="Fone">Fone</option>
+              <option value="Monitor">Monitor</option>
+              <option value="Acessorio">Acessório</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="sortSelect">Ordenar</label>
+            <select id="sortSelect">
+              <option value="featured">Destaques</option>
+              <option value="price-asc">Menor preco</option>
+              <option value="price-desc">Maior preco</option>
+              <option value="rating">Melhor avaliação</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="priceRange">Preço máximo: <span id="priceValue">R$ 2.000</span></label>
+            <input id="priceRange" type="range" min="100" max="2500" value="2500" step="50" />
+          </div>
+
+          <label class="stock-toggle">
+            <input id="stockOnly" type="checkbox" checked />
+            <span>Somente em estoque</span>
+          </label>
+        </aside>
+
+        <div class="catalog">
+          <div class="catalog-toolbar">
+            <div>
+              <span class="eyebrow">Vitrine</span>
+              <h2 id="resultsTitle">Produtos em destaque</h2>
+            </div>
+            <span id="resultCount" class="result-count">0 itens</span>
+          </div>
+
+          <div id="productGrid" class="product-grid" aria-live="polite"></div>
+          <p id="emptyState" class="empty-state" hidden>Nenhum produto encontrado.</p>
+        </div>
+      </section>
+
+      <section class="support-band" id="suporte">
+        <div>
+          <span class="eyebrow">Suporte</span>
+          <h2>Ajuda para escolher o melhor setup</h2>
+          <p>Atendimento para comparar modelos, checar compatibilidade e fechar combos.</p>
+        </div>
+        <a class="primary-button" href="mailto:vendas@techzone.com">
+          <i data-lucide="message-circle"></i>
+          Falar com vendas
+        </a>
+      </section>
+    </main>
+
+    <div class="cart-backdrop" data-close-cart hidden></div>
+    <aside class="cart-drawer" aria-label="Carrinho" aria-hidden="true">
+      <div class="cart-header">
+        <div>
+          <span class="eyebrow">Carrinho</span>
+          <h2>Seu pedido</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-cart aria-label="Fechar carrinho">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-summary">
+        <div>
+          <span>Subtotal</span>
+          <strong id="cartTotal">R$ 0,00</strong>
+        </div>
+        <button class="primary-button checkout-button" type="button">
+          <i data-lucide="credit-card"></i>
+          Finalizar compra
+        </button>
+      </div>
+    </aside>
+  </body>
+</html>
